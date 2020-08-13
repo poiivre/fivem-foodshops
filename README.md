@@ -73,7 +73,6 @@ Fontaine.Taille   : Taille autour des coord ou le joueur a acces a la fontaine
 Fontaine.Anim     : Est-ce que le joueur joue l'animation ?
 Fontaine.Notif    : Notif si le joueur est proche d'une fontaine
 Fontaine.Notif2   : Notif si le joueur boit a une fontaine
-Fontaine.Notif3   : Notif si le joueur n'as pas assez d'argent
 Fontaine.Hydrate  : Taux d'hydratation ajouter au joueur ( esx_status )
 Fontaine.Pos      : Liste des fontaines
 
@@ -82,7 +81,6 @@ VendingM.Taille   : Taille autour des coord ou le joueur a acces a la Distribute
 VendingM.Anim     : Est-ce que le joueur joue l'animation 'Recuperer son Item' ?
 VendingM.Notif    : Notif si le joueur est proche d'un Distributeurs	
 VendingM.Notif2   : Notif si le joueur achete a un Distributeurs	
-VendingM.Notif3   : Notif si le joueur n'as pas assez d'argent
 VendingM.Item..   : Nom des items à vendre dans la base de donnée
 VendingM.Pos      : Liste des Distributeurs	
 
