@@ -83,8 +83,6 @@ VendingM.Notif    : Notif si le joueur est proche d'un Distributeurs
 VendingM.Notif2   : Notif si le joueur achete a un Distributeurs	
 VendingM.Item..   : Nom des items à vendre dans la base de donnée
 VendingM.Pos      : Liste des Distributeurs	
-
-
 ```
 Pour ajouter une Machine à Café, Fontaine ou Distributeur	, copier cette ligne dans la liste .Pos correspondante et remplacer les '0.0' par les coordonnées 
 ( n'oublier pas le ',' a la fin !):
