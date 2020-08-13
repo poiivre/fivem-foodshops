@@ -202,6 +202,10 @@ local Temps = Variable
 		while Temps >= 0 do
 			Citizen.Wait(10)
 			DisableControlAction(2,38,true)
+			DisableControlAction(2,187,true)
+			DisableControlAction(2,189,true)
+			DisableControlAction(2,190,true)
+
 			Temps = Temps - 1
 		end
     ClearPedSecondaryTask(GetPlayerPed(-1))
