@@ -1,11 +1,11 @@
 --[[ 
 	Pour utiliser ce script vous      To use this script you will 
-  devez avoir un item café et       need to get a coffee item and 
+  devez avoir un item cafÃ© et       need to get a coffee item and 
   les trois items choisis pour      the three chosen items for the 
   les distributeur dans votre       vending machines. You will also
   BDD.	Vous devez aussi avoir      need the esx_status script to
 	esx_status pour utiliser les      be able to change player's thirst
-  fontaines à eau.                  when using a drinking fountain
+  fontaines Ã  eau.                  when using a drinking fountain
    
 	Si vous avez besoin d'aide  		  If you need help to modify
 	afin de le lier a un autre			  it to be useable with another
@@ -33,8 +33,8 @@ Fontaine.Pos	    = {
 Cafe.Prix	        = 12				
 Cafe.Taille 	    = 1.0
 Cafe.Anim	        = true					
-Cafe.Notif	        = '~INPUT_CONTEXT~ Prendre un Café (12$)'
-Cafe.Notif2 	    = 'Vous avez acheter un Café !'
+Cafe.Notif	        = '~INPUT_CONTEXT~ Prendre un CafÃ© (12$)'
+Cafe.Notif2 	    = 'Vous avez acheter un CafÃ© !'
 Cafe.Item 	        = 'coffee'					
 Cafe.Pos		    = {	
 		{ x = -431.409, y = 6004.541, z = 31.755 }, 
@@ -44,18 +44,33 @@ VendingM.Prix		= 10
 VendingM.Taille 	= 1.0
 VendingM.Anim		= true					
 VendingM.Notif		= '10$~n~~INPUT_FRONTEND_LEFT~ Sandwich~n~~INPUT_FRONTEND_DOWN~ Soda~n~~INPUT_FRONTEND_RIGHT~ Monster'
-VendingM.Notif2		= 'Vous Récuperer votre Achat'
+VendingM.Notif2		= 'Vous RÃ©cuperer votre Achat'
 VendingM.Item1 		= 'bread'
 VendingM.Item2 		= 'soda'
 VendingM.Item3		= 'energy'			
 VendingM.Pos		= {		
-		{ x = -438.391, y = 5998.022, z = 31.755}, 
+		{ x = -438.449,	y = 5997.979, 	z = 31.755},
+		{ x = 309.11, 	y = -585.77, 	z = 43.28},
+		{ x = 436.29, 	y = -986.59, 	z = 30.68},
+		{ x = -205.71, 	y = 6233.75, 	z = 29.66},
+		{ x = -438.28,	y = 5998.15, 	z = 31.75},
+		{ x = -448.35, 	y = 6022.57, 	z = 24.73},
+		{ x = 258.19, 	y = 6326.98, 	z = 32.43},
+		{ x = -2192.87,	y = 4292.92, 	z = 49.17},
+		{ x = 1699.62, 	y = 4791.43, 	z = 41.92},
+		{ x = 1834.13, 	y = 3673.18, 	z = 34.27},
+		{ x = 1193.33, 	y = 2701.75, 	z = 38.15},
+		{ x = 1047.71, 	y = 2662.72, 	z = 39.55},
+		{ x = 913.30, 	y = 3643.68, 	z = 32.66},
+		{ x = 2743.30, 	y = 3468.25, 	z = 55.67},
+		{ x = -2549.26,	y = 2316.65, 	z = 33.21}
+
 }
 
 
-ProcheFontaine  = false
-ProcheCafe      = false
-ProcheDistrib   = false
+ProcheFontaine  = 0
+ProcheCafe      = 0
+ProcheDistrib   = 0
 
 -------------------------
 --- Declaration d'ESX ---
@@ -80,26 +95,34 @@ Citizen.CreateThread(function()
 	while true do
 		Citizen.Wait(25)
 
-		if ProcheFontaine then
+		if ProcheFontaine ~= 0 then
 			ESX.ShowHelpNotification(Fontaine.Notif)
 			if IsControlJustReleased(0, 38) then	
-				TriggerServerEvent('Selene_Fontaine', Fontaine.Hydrate, Fontaine.Prix, Fontaine.Notif2 , NotifArgent)
+				TriggerServerEvent('Selene_Fontaine', Fontaine.Hydrate, Fontaine.Prix, Fontaine.Notif2 , NotifArgent) 
+				ProcheFontaine  = 0
 			end
       
-    elseif ProcheCafe then
+    		elseif ProcheCafe ~= 0 then
 			ESX.ShowHelpNotification(Cafe.Notif)
 			if IsControlJustReleased(0, 38) then	
 				TriggerServerEvent('Selene_Cafe', Cafe.Item, Cafe.Prix, Cafe.Notif2 , NotifArgent)
+				ProcheCafe      = 0
 			end
 
-    elseif ProcheDistrib then
-      ESX.ShowHelpNotification(VendingM.Notif)
+    		elseif ProcheDistrib ~= 0 then
+      			ESX.ShowHelpNotification(VendingM.Notif)
 			if IsControlJustReleased(0, 189) and GetLastInputMethod(0) then	
 				  TriggerServerEvent('Selene_VendingM', VendingM.Item1, VendingM.Prix, VendingM.Notif2 , NotifArgent)
+				  ProcheDistrib   = 0
+
 			elseif IsControlJustReleased(0, 187) and GetLastInputMethod(0) then	
 				  TriggerServerEvent('Selene_VendingM', VendingM.Item2, VendingM.Prix, VendingM.Notif2 , NotifArgent)
+				  ProcheDistrib   = 0
+
 			elseif IsControlJustReleased(0, 190) and GetLastInputMethod(0) then	
 				  TriggerServerEvent('Selene_VendingM', VendingM.Item3, VendingM.Prix, VendingM.Notif2 , NotifArgent)
+				  ProcheDistrib   = 0
+
 			end
       
 		end
@@ -109,41 +132,61 @@ end)
 
 
 Citizen.CreateThread(function()
-	while true do
-		Citizen.Wait(500)
+        while true do Citizen.Wait(1000)
 
 		local Joueur = GetEntityCoords(GetPlayerPed(-1), 0)
 	
-		for _, cherche in pairs(Fontaine.Pos) do
-			local distance = GetDistanceBetweenCoords(cherche.x, cherche.y, cherche.z, Joueur['x'], Joueur['y'], Joueur['z'], true)
+	------------------
+	-- Dans la Zone --
+	------------------
+		
+		for i = 1, #Fontaine.Pos, 1 do
+			local distance = GetDistanceBetweenCoords(Fontaine.Pos[i].x, Fontaine.Pos[i].y, Fontaine.Pos[i].z, Joueur['x'], Joueur['y'], Joueur['z'], true)
 		
 			if distance <= Fontaine.Taille then
-				ProcheFontaine = true
-			else 
-				ProcheFontaine = false
-				 
+				ProcheFontaine = i
 			end
 		end
         
-        for _, cherche in pairs(Cafe.Pos) do
-			local distance = GetDistanceBetweenCoords(cherche.x, cherche.y, cherche.z, Joueur['x'], Joueur['y'], Joueur['z'], true)
+        	for i = 1, #Cafe.Pos, 1 do
+			local distance = GetDistanceBetweenCoords(Cafe.Pos[i].x, Cafe.Pos[i].y, Cafe.Pos[i].z, Joueur['x'], Joueur['y'], Joueur['z'], true)
 		
 			if distance <= Cafe.Taille then
-				ProcheCafe = true
-			else 
-				ProcheCafe = false
-				 
+				ProcheCafe = i
+			end
+		end
+	
+
+		for i = 1, #VendingM.Pos, 1 do
+			local distance = GetDistanceBetweenCoords(VendingM.Pos[i].x, VendingM.Pos[i].y, VendingM.Pos[i].z, Joueur['x'], Joueur['y'], Joueur['z'], true)
+			if distance <= VendingM.Taille then
+				ProcheDistrib = i
 			end
 		end
 
-        for _, cherche in pairs(VendingM.Pos) do
-			local distance = GetDistanceBetweenCoords(cherche.x, cherche.y, cherche.z, Joueur['x'], Joueur['y'], Joueur['z'], true)
-		
-			if distance <= VendingM.Taille then
-				ProcheDistrib = true
-			else 
-				ProcheDistrib = false
-				 
+	----------------
+	--- Hors Zone --
+	----------------
+
+		if ProcheDistrib ~= 0 then 
+			local j = ProcheDistrib
+			local distance = GetDistanceBetweenCoords(VendingM.Pos[j].x, VendingM.Pos[j].y, VendingM.Pos[j].z, Joueur['x'], Joueur['y'], Joueur['z'], true)
+			if distance <= VendingM.Taille then else
+				ProcheDistrib = 0
+			end
+		end
+		if ProcheCafe ~= 0 then 
+			local j = ProcheCafe
+			local distance = GetDistanceBetweenCoords(Cafe.Pos[i].x, Cafe.Pos[i].y, Cafe.Pos[i].z, Joueur['x'], Joueur['y'], Joueur['z'], true)
+			if distance <= Cafe.Taille then else
+				ProcheCafe = 0
+			end
+		end
+		if ProcheFontaine ~= 0 then 
+			local j = ProcheFontaine
+			local distance = GetDistanceBetweenCoords(Fontaine.Pos[i].x, Fontaine.Pos[i].y, Fontaine.Pos[i].z, Joueur['x'], Joueur['y'], Joueur['z'], true)
+			if distance <= Fontaine.Taille then else
+				ProcheFontaine = 0
 			end
 		end
 
@@ -205,10 +248,10 @@ local Temps = Variable
 			DisableControlAction(2,187,true)
 			DisableControlAction(2,189,true)
 			DisableControlAction(2,190,true)
-
 			Temps = Temps - 1
 		end
     ClearPedSecondaryTask(GetPlayerPed(-1))
 
 end
+
 
