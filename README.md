@@ -5,7 +5,7 @@
 - [x] Buy a Coffee item at Coffee Machines  | Acheter un item Café au Machines à Cafés
 - [x] Buy 3 Items at Vending Machines       | Acheter parmis 3 Item au Distributeurs
 
-# [EN] PACK : Drinking Fountains, Coffee & Vending Machines [ ESX ]
+# [EN] Drinking Fountains, Coffee & Vending Machines [ ESX ]
 Created by Selene Desna on August 13, 2020 for [ Holliday's RP https://discord.gg/rzPAeFr ]
 
 This Script need your database to have a coffee item and the three item you want in the vending machines.
@@ -53,8 +53,8 @@ To add a coffee / vending machine or a foutain copy the following line in corres
 
 
 
-# [FR] PACK : Fontaine à Eau, Machine à Café & Distributeurs [ ESX ]
-Creer par Selene Desna le  13 aout 2020 pour [ Holliday's RP https://discord.gg/rzPAeFr ]
+# [FR] Fontaine à Eau, Machine à Café & Distributeurs [ ESX ]
+Creer par Selene Desna le 13 aout 2020 pour [ Holliday's RP https://discord.gg/rzPAeFr ]
 
 Ce Script à besoin que votre base de donnée est un item café et les trois item choisi pour les distributeurs.
 Pour utilisé les fontaine à eau vous aurez besoin de esx_status : [ github.com/esx-framework/esx_status ]
