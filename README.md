@@ -1,3 +1,4 @@
+Discord Dev Scripts : https://discord.gg/5EDP4KH
 ### [EN]  [FR] ( resmon 1 : CPU msec : 0.03 ms )
 
 ##### Allow Player to | | Permet au Joueur de :
