@@ -273,3 +273,13 @@ function AucunProche()
 	Fontaine.Proche	= false  
 end
 
+function SortirVoiture()
+	
+	local Joueur = GetPlayerPed(-1)
+	if IsPedInAnyVehicle(Joueur, true) then
+		local Vehicule = GetVehiclePedIsUsing(Joueur)
+		TaskLeaveVehicle(Joueur, Vehicule)
+		Citizen.Wait(2000)
+	end
+
+end
