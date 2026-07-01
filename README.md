@@ -1,5 +1,3 @@
-[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/D1D44EGNM)
-
 ### [EN]  [FR] ( resmon 1 : CPU msec : 0.03 ms )
 
 ##### Give a use to | | Donne une utilisation au :
@@ -10,7 +8,7 @@
 - [x] Burger & HotDog FoodVan    | | Roulotte a HotDog et Burger
 
 # [EN] Drinking Fountains, Fruit Stand, FoodVan, Coffee & Vending Machines   [ Script Using ESX ]
-Created by Selene Desna on August 13, 2020 for [ Holliday's RP ]
+Created on August 13, 2020 for [ Holliday's RP ]
 
 This Script need your database to have a coffee item and the three item you want in the vending machines.
 To use the Drinking Fountains you will need esx_status : [ github.com/esx-framework/esx_status ]
@@ -32,7 +30,7 @@ Hydrate      : Thirst rate added to player ( esx_status )
 ```
 
 # [FR] Fontaine à Eau, Stand de Fruit, Machine à Café, Roulotte FastFood & Distributeurs   [ Script Utilisant ESX ]
-Creer par Selene Desna le 13 aout 2020 pour [ Holliday's RP ]
+Creer le 13 aout 2020 pour [ Holliday's RP ]
 
 Ce Script à besoin que votre base de donnée est les items disponible à l'achat.
 Pour utilisé les fontaine à eau vous aurez besoin de esx_status : [ github.com/esx-framework/esx_status ]
